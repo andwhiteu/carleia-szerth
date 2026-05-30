@@ -72,11 +72,29 @@
         .player-btn { width: 40px; height: 40px; background-color: #3b82f6; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; margin-right: 15px; font-weight: bold;}
 
         /* --- GALERI FOTO SCROLL --- */
-        .scroll-foto-wrapper { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
-        .scroll-foto-wrapper::-webkit-scrollbar { height: 5px; }
-        .scroll-foto-wrapper::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 10px; }
-        .foto-card { flex: 0 0 160px; scroll-snap-align: start; background: #fff; padding: 8px; border-radius: 12px; border: 2px solid #dbeafe; }
-        .foto-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+.scroll-foto-wrapper { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+.scroll-foto-wrapper::-webkit-scrollbar { height: 5px; }
+.scroll-foto-wrapper::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 10px; }
+
+.foto-card { 
+    flex: 0 0 160px; 
+    scroll-snap-align: start; 
+    background: #fff; 
+    padding: 8px; 
+    border-radius: 12px; 
+    border: 2px solid #dbeafe; 
+    height: 200px; /* Menentukan tinggi kontainer agar seragam */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-card img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; /* FOTO TIDAK AKAN DICROP/DIRENGGANGKAN */
+    border-radius: 8px; 
+}
 
         /* --- GAME: TICTACTOE --- */
         .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; max-width: 250px; margin: 0 auto 15px; }
