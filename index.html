@@ -71,45 +71,60 @@
         .blue-player { display: flex; align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; }
         .player-btn { width: 40px; height: 40px; background-color: #3b82f6; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; margin-right: 15px; font-weight: bold;}
 
-/* --- GALERI FOTO SCROLL --- */
-.scroll-foto-wrapper { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
-.scroll-foto-wrapper::-webkit-scrollbar { height: 5px; }
-.scroll-foto-wrapper::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 10px; }
+/* --- GALERI FOTO SCROLL YANG DISESUAIKAN --- */
+.scroll-foto-wrapper { 
+    display: flex; 
+    flex-direction: row; /* Berjajar ke samping */
+    align-items: flex-start; /* Foto akan menyesuaikan tinggi aslinya */
+    overflow-x: auto; 
+    gap: 15px; 
+    padding-bottom: 10px; 
+    scroll-snap-type: x mandatory; 
+}
 
 .foto-card { 
-    flex: 0 0 160px; 
+    flex: 0 0 auto; /* Ukuran mengikuti konten */
     scroll-snap-align: start; 
     background: #fff; 
-    padding: 8px; 
-    border-radius: 12px; 
+    padding: 6px; /* Padding tipis sebagai bingkai */
+    border-radius: 16px; /* Radius luar */
     border: 2px solid #dbeafe; 
-    height: 200px; /* Menentukan tinggi kontainer agar seragam */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .foto-card img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain; /* FOTO TIDAK AKAN DICROP/DIRENGGANGKAN */
-    border-radius: 8px; 
+    display: block;
+    max-width: 250px; /* Lebar maksimal agar tidak terlalu besar di HP */
+    height: auto; /* Tinggi otomatis agar tidak gepeng */
+    border-radius: 10px; /* Radius dalam mengikuti radius border tabel */
 }
+
 
 
         /* --- GAME: TICTACTOE --- */
         .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; max-width: 250px; margin: 0 auto 15px; }
         .cell { aspect-ratio: 1; background: #e2e8f0; border-radius: 8px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 3rem; font-weight: 800; border: 2px solid #bfdbfe; color: #1e3a8a;}
         
-        /* --- GAME: MONOPOLI --- */
-        .monopoly-board { width: 100%; padding-bottom: 100%; position: relative; margin-bottom: 15px; background: #f1f5f9; border: 2px solid #bfdbfe; border-radius: 8px; }
-        .m-center-text { position: absolute; top: 25%; left: 25%; width: 50%; height: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Caveat', cursive; font-size: 1.8rem; color: #cbdbe5; text-align: center; font-weight: bold; }
-        .m-cell { position: absolute; width: 25%; height: 25%; background: #fff; border: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; text-align: center; font-weight: bold; color: #1e3a8a; }
-        .m-token { position: absolute; width: 16%; height: 16%; border-radius: 50%; border: 2px solid #3b82f6; background-color: white; background-size: cover; background-position: center; z-index: 10; transition: all 0.5s ease; margin-left: 4.5%; margin-top: 4.5%; 
-            /* URL FOTO BIDAK MONOPOLI */
-            background-image: url('https://i.pinimg.com/736x/de/5e/6c/de5e6ceeba7d05d6d583904e8400e9ba.jpg');
-        }
-        .btn-dadu { width: 100%; padding: 10px; background: #1e3a8a; color: white; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 10px;}
+/* --- Bidak Monopoly --- */
+.m-token { 
+    position: absolute; width: 14%; height: 14%; border-radius: 50%; 
+    border: 3px solid #3b82f6; background-color: white; 
+    background-size: cover; background-position: center; 
+    z-index: 10; transition: all 0.5s ease;
+}
+
+/* --- Gallery Foto Tanpa Stretch --- */
+.foto-card { 
+    flex: 0 0 auto; scroll-snap-align: start; background: #fff; 
+    padding: 6px; border-radius: 16px; border: 2px solid #dbeafe; 
+    display: flex; justify-content: center; align-items: center;
+}
+.foto-card img { 
+    display: block; max-width: 250px; height: auto; 
+    border-radius: 10px; /* Radius mengikuti border card */
+}
 
         /* --- GAME: WHACK A MOLE (KISS ME) --- */
         .mole-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
