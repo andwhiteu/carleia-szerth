@@ -4,64 +4,513 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Favorite Person, Carleia</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS Utama */
+        /* ================== STYLING UTAMA ================== */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: #f0f4f9; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; }
-        .mobile-frame { width: 100%; max-width: 450px; min-height: 100vh; background: #ffffff; box-shadow: 0 0 20px rgba(0,0,0,0.05); position: relative; display: flex; flex-direction: column; background-image: url('https://i.pinimg.com/736x/18/1a/35/181a35013258b058115aa064111eb3f7.jpg'); background-size: cover; }
-        .page-content { display: none; padding: 20px; flex: 1; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .btn-tap { width: 100%; padding: 15px; background: linear-gradient(45deg, #3b82f6, #ff99c8); color: white; border: none; border-radius: 15px; font-weight: 800; cursor: pointer; }
+        
+        .mobile-frame {
+            width: 100%; max-width: 450px; min-height: 100vh; background: #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); position: relative; display: flex; flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- STATUS BAR & FOOTER --- */
+        .status-bar {
+            background-color: #3b82f6; color: white; padding: 5px; font-size: 0.8rem; font-weight: 600;
+            text-align: center; display: none; z-index: 100; position: sticky; top: 0;
+        }
+        .footer-cr {
+            text-align: center; font-size: 0.75rem; color: #64748b; padding: 15px; margin-top: auto;
+            border-top: 1px dashed #cbdbe5;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- LOGIN & HALAMAN DENGAN BACKGROUND KUSTOM --- */
+        #login-section, .page-content {
+            /* URL Background Utama */
+            background-image: url('https://i.pinimg.com/736x/18/1a/35/181a35013258b058115aa064111eb3f7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        #login-section {
+            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; flex: 1;
+            height: 100vh;
+        }
+
+        .login-box {
+            width: 100%; background: rgba(255, 255, 255, 0.9); border: 2px solid #cbdbe5;
+            border-radius: 16px; padding: 35px 25px; text-align: center;
+        }
+        .login-box h1 { font-size: 2.2rem; font-weight: 800; color: #3b82f6; margin-bottom: 5px; }
+        .login-box input { width: 100%; padding: 14px; margin-bottom: 12px; border: 2px solid #e2e8f0; border-radius: 10px; }
+        .login-box button { width: 100%; padding: 14px; background-color: #3b82f6; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
+
+        .warning-text { font-size: 0.75rem; color: #d10056; margin-top: 15px; font-weight: 800; }
+
+        /* --- ANIMASI TRANSISI HALAMAN --- */
+        .page-content { display: none; padding: 20px; flex: 1; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-20px); } }
+
         .card-tabel { background: rgba(255, 255, 255, 0.95); border: 2px solid #bfdbfe; border-radius: 16px; padding: 20px; margin-bottom: 20px; }
-        .nav-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; background: #3b82f6; color: white; margin-top: 10px; }
-        .wa-btn { background: #25d366; }
-        .footer-cr { text-align: center; font-size: 0.75rem; color: #64748b; padding: 15px; }
+        .judul-utama { text-align: center; color: #1e3a8a; font-size: 1.6rem; font-weight: 800; }
+        .nama-pacar { text-align: center; font-family: 'Caveat', cursive; font-size: 2rem; color: #3b82f6; margin-bottom: 15px; }
+        .section-title { font-size: 1.1rem; font-weight: 700; color: #1e3a8a; margin-bottom: 12px; text-align: center; }
+
+        /* --- MEDIA (VIDEO & AUDIO) --- */
+        .video-container { border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 2px solid #bfdbfe; }
+        .video-container video { width: 100%; display: block; }
+        .blue-player { display: flex; align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; }
+        .player-btn { width: 40px; height: 40px; background-color: #3b82f6; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; margin-right: 15px; font-weight: bold;}
+
+        /* --- GALERI FOTO SCROLL --- */
+        .scroll-foto-wrapper { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+        .scroll-foto-wrapper::-webkit-scrollbar { height: 5px; }
+        .scroll-foto-wrapper::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 10px; }
+        .foto-card { flex: 0 0 160px; scroll-snap-align: start; background: #fff; padding: 8px; border-radius: 12px; border: 2px solid #dbeafe; }
+        .foto-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+
+        /* --- GAME: TICTACTOE --- */
+        .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; max-width: 250px; margin: 0 auto 15px; }
+        .cell { aspect-ratio: 1; background: #e2e8f0; border-radius: 8px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 3rem; font-weight: 800; border: 2px solid #bfdbfe; color: #1e3a8a;}
+        
+        /* --- GAME: MONOPOLI --- */
+        .monopoly-board { width: 100%; padding-bottom: 100%; position: relative; margin-bottom: 15px; background: #f1f5f9; border: 2px solid #bfdbfe; border-radius: 8px; }
+        .m-center-text { position: absolute; top: 25%; left: 25%; width: 50%; height: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Caveat', cursive; font-size: 1.8rem; color: #cbdbe5; text-align: center; font-weight: bold; }
+        .m-cell { position: absolute; width: 25%; height: 25%; background: #fff; border: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; text-align: center; font-weight: bold; color: #1e3a8a; }
+        .m-token { position: absolute; width: 16%; height: 16%; border-radius: 50%; border: 2px solid #3b82f6; background-color: white; background-size: cover; background-position: center; z-index: 10; transition: all 0.5s ease; margin-left: 4.5%; margin-top: 4.5%; 
+            /* URL FOTO BIDAK MONOPOLI */
+            background-image: url('https://i.pinimg.com/736x/de/5e/6c/de5e6ceeba7d05d6d583904e8400e9ba.jpg');
+        }
+        .btn-dadu { width: 100%; padding: 10px; background: #1e3a8a; color: white; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 10px;}
+
+        /* --- GAME: WHACK A MOLE (KISS ME) --- */
+        .mole-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+        .mole-hole { background: #dbeafe; border-radius: 50%; aspect-ratio: 1; position: relative; overflow: hidden; border: 3px solid #bfdbfe; display: flex; justify-content: center; align-items: center;}
+        .mole-head { width: 80%; height: 80%; border-radius: 50%; background-size: cover; background-position: center; cursor: pointer; transition: transform 0.1s; 
+            /* URL FOTO TIKUS TANAH (KISS ME) */
+            background-image: url('https://i.pinimg.com/736x/6e/ce/a8/6ecea8e5ce58dd7d28d37e55ed411b6d.jpg'); 
+        }
+        .mole-head:active { transform: scale(0.9); }
+
+        /* --- GAME: JARS OF LOVE --- */
+        .jars-container { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 10px; }
+        .jar-wrapper { display: flex; flex-direction: column; align-items: center; width: 30%; cursor: pointer; }
+        .jar { width: 50px; height: 70px; border: 3px solid #3b82f6; border-top: none; border-radius: 0 0 15px 15px; position: relative; overflow: hidden; background: #fff; margin-bottom: 5px; }
+        .jar::before { content:''; position: absolute; top: -5px; left: -5px; right: -5px; height: 5px; border: 3px solid #3b82f6; border-radius: 5px; }
+        .jar-fill { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: #ff99c8; transition: height 0.2s; }
+        .jar-label { font-size: 0.7rem; font-weight: 600; color: #1e3a8a; text-transform: uppercase;}
+        @keyframes spill { 0% { transform: translateX(0); } 25% { transform: translateX(-5px) rotate(-5deg); } 50% { transform: translateX(5px) rotate(5deg); } 75% { transform: translateX(-5px) rotate(-5deg); } 100% { transform: translateX(0); } }
+        .spilling { animation: spill 0.4s ease-in-out; }
+
+        /* --- HALAMAN AKHIR & RATING --- */
+        .thankyou-text { text-align: center; font-size: 1.8rem; font-family: 'Caveat', cursive; color: #d10056; font-weight: bold; margin: 20px 0; background: rgba(255,255,255,0.7); padding: 10px; border-radius: 10px;}
+        .rating-box { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;}
+        .star { font-size: 2rem; color: #cbdbe5; cursor: pointer; transition: color 0.3s; }
+        .star.active { color: #d10056; }
+
+        /* --- BUTTON NAVIGASI --- */
+        .nav-buttons { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; margin-bottom: 15px;}
+        .nav-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; background: #3b82f6; color: white; font-size: 0.9rem; }
+        .nav-btn.secondary { background: #e2e8f0; color: #1e293b; }
+
+        /* --- GLITTER ANIMATION --- */
+        .glitter-star { position: absolute; width: 20px; height: 20px; pointer-events: none; z-index: 9999; animation: sparkle 0.8s linear forwards; }
+        @keyframes sparkle { 0% { transform: scale(0) rotate(0deg); opacity: 1; } 50% { transform: scale(1.2) rotate(90deg); opacity: 0.8; } 100% { transform: scale(0) rotate(180deg); opacity: 0; } }
     </style>
 </head>
 <body>
-    <audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
+
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
 
     <div class="mobile-frame">
-        <div id="login-section" style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; padding:20px;">
-            <button class="btn-tap" onclick="masukWeb()">TAP TO OPEN</button>
+        
+        <div class="status-bar" id="status-bar">
+            <marquee behavior="scroll" direction="left">✦ TERUNTUK SANG PEMILIK HATI ✦</marquee>
         </div>
+
+        <div id="login-section">
+            <div class="login-box">
+                <h1>✧ lovestagram ✧</h1>
+                <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 30px;">For My Favorite Person, Carleia</div>
+                
+                <!-- Tombol Navigasi pengganti login -->
+                <button onclick="masukWeb()" style="padding: 18px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
+                    Open The Love Letter 💌
+                </button>
+                
+                <div class="warning-text" style="margin-top: 25px;">[ Peringatan: Tolong kecilkan volume HP kamu ]</div>
+            </div>
+        </div>
+
 
         <div id="page-1" class="page-content">
             <div class="card-tabel">
+                <div class="judul-utama">HI, THIS IS FOR YOU</div>
                 <div class="nama-pacar">Carleia Szerth</div>
-                <p>haloo anak piyik sayangkuu. aku gatau mau nyebut apaa, apakah pacar?? mantan?? pdkt or hts?? yang pasti aku sayang kamu dan makasih ya udah mau bertahan. Dari selama kita deket bahkan pacaran kemarin rasanya aku gak pernah bikinin kamu hadiah, dan ini hadiah pertama dari aku buat kamu. aku sangat amat berterimakasih karna kamu udah se effort itu kemarin-marin kasih hadiah lah bikinin aku itu ini bahkan kamu mau nunggu.
-                <br><br>
-                aku ngerasa banget klo aku sangat amat slow respon, aku kurang perhatian ke kamu, bahkan kayaknya aku gapernah kasih waktu dan sayang selayaknya yang kamu kasih ke akuu. Maaf karna ga pernah kasih sebanyak yang kamu mau, harusnya dengan perlakuan kamu yang banyak hal manis ini harusnya dapet banyak cinta yang setimpal, tapi sama aku malah kayak terabaikan gitu. akuu minta maaf ya.. 
-                <br><br>
-                akuu sayang kamu, dan aku berterimakasih banget karna kamu udh milih untuk stay, bukan malah ikut go. dan kamu tipikal yang apa-apa oee fine gituu. klo misalkan aku ada hal yang kelewatan batas tolong di kasih tau yaaa, di ingetin klo aku ga boleh ini itu. AKUUUU JUGA BAHKAN SADAAARRR BANGETTT SAMA KEBIASAAN JELEK AKUUUU, aku yang deket smaa banyak orang dan kayaknya gak mandang gender lagi siapa aja di dketin. akuuu minta maaf yaaa</p>
+                <p style="font-size: 0.95rem; text-align: justify; color: #334155;">
+                    haloo anak piyik sayangkuu. aku gatau mau nyebut apaa, apakah pacar?? mantan?? 
+                    pdkt or hts?? yang pasti aku sayang kamu dan makasih ya udah mau bertahan. 
+                    Dari selama kita deket bahkan pacaran kemarin rasanya aku gak pernah bikinin kamu hadiah,
+                    dan ini hadiah pertama dari aku buat kamu. aku sangat amat berterimakasih karna kamu udah
+                    se effort itu kemarin-marin kasih hadiah lah bikinin aku itu ini bahkan kamu mau nunggu.
+                    <br><br>
+                    aku ngerasa banget klo aku sangat amat slow respon, aku kurang perhatian ke kamu, bahkan
+                    kayaknya aku gapernah kasih waktu dan sayang selayaknya yang kamu kasih ke akuu. Maaf karna
+                    ga pernah kasih sebanyak yang kamu mau, harusnya dengan perlakuan kamu yang banyak hal 
+                    manis ini harusnya dapet banyak cinta yang setimpal, tapi sama aku malah kayak terabaikan gitu. 
+                    akuu minta maaf ya.. 
+                     <br><br>
+                    akuu sayang kamu, dan aku berterimakasih banget karna kamu udh milih untuk
+                    stay, bukan malah ikut go. dan kamu tipikal yang apa-apa oee fine gituu. klo misalkan aku ada hal
+                    yang kelewatan batas tolong di kasih tau yaaa, di ingetin klo aku ga boleh ini itu. AKUUUU JUGA BAHKAN 
+                    SADAAARRR BANGETTT SAMA KEBIASAAN JELEK AKUUUU, aku yang deket smaa banyak orang dan kayaknya gak mandang
+                    gender lagi siapa aja di dketin. akuuu minta maaf yaaa    
+                </p>
             </div>
-            <button class="nav-btn" onclick="goToPage(2)">Next Page >></button>
+
+            <div class="card-tabel">
+                <div class="section-title">✧ Special For You</div>
+                <div class="video-container">
+                    <video autoplay loop muted playsinline>
+                        <source src="video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="card-tabel">
+                <div class="blue-player" onclick="toggleAudio()">
+                    <div class="player-btn" id="play-icon">[ || ]</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.95rem;">THANK YOU 4 LOVIN' ME</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Paul Partohap</div>
+                    </div>
+                </div>
+
+                <div class="section-title">✧ Why? Why can I love you this much?</div>
+                <p style="font-size: 0.95rem; text-align: justify; color: #334155;">
+                    aku juga bingung soal ini, kok bisa ya? bisa-bisanya aku kepikiran buat dateng ke kamu?
+                    dan kok bisa? kenapa dan apa alasan kamuu nge iyain waktu itu? dannn klo misalkan alasannya
+                    karna waktu, kenapaaaaa harus kamuuu. kamu penasaran juga gak sih soal ini, keliatan jahat tapi jujur
+                    aku bneran gamau asing pisah sama kamu, dan klo misalkan kamu takut aku tetiba pengen deketin org aku bakalaannn bilang.
+                    dan jujur aja aku lagi gamau deketin siapa-siapaa, capek banget sm kegiatan rl ku, dan ada kamu yangg apa yaa
+                    istilahnya, adaaa kamu. TAPIII BUKAN BERARTI KAMU PELARIAN KLO AKUU BOSENNN, tp emg kyk aku pasti klo ada apa-apanya
+                    pasti reflek pengen ke kamu gataauuu kenapa yaa, stay lebih lama yaaaa, aku teeninnn kamu mau kemana ajaa sini
+                </p>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="goToPage(2)">Next Page >></button>
+            </div>
+            <div class="footer-cr">Ini pengakuan cintanya fuaize untuk carleia</div>
+        </div>
+
+        <div id="page-2" class="page-content">
+            <div class="card-tabel">
+                <div class="section-title">✧ Tic-Tac-Toe</div>
+                <p style="text-align: center; font-size:0.8rem; margin-bottom: 10px;">Ayo main! (Tap kotaknya)</p>
+                <div class="board" id="tictactoe-board"></div>
+                <button class="btn-dadu" onclick="resetTicTacToe()">[ Reset Papan ]</button>
+            </div>
+
+            <div class="card-tabel">
+                <div class="section-title">✧ Monopoly Game</div>
+                <div class="monopoly-board" id="monopoly-board">
+                    <div class="m-center-text">Bucin<br>Poly</div>
+                    <div class="m-token" id="m-token" style="top: 0%; left: 0%;"></div>
+                    <div class="m-cell" style="top:0%; left:0%;">Start</div>
+                    <div class="m-cell" style="top:0%; left:25%;">Date</div>
+                    <div class="m-cell" style="top:0%; left:50%;">Hugging</div>
+                    <div class="m-cell" style="top:0%; left:75%;">Kiss</div>
+                    <div class="m-cell" style="top:25%; left:75%;">Miss u</div>
+                    <div class="m-cell" style="top:50%; left:75%;">Angry</div>
+                    <div class="m-cell" style="top:75%; left:75%;">Sleeping</div>
+                    <div class="m-cell" style="top:75%; left:50%;">Love</div>
+                    <div class="m-cell" style="top:75%; left:25%;">Chat</div>
+                    <div class="m-cell" style="top:75%; left:0%;">Call</div>
+                    <div class="m-cell" style="top:50%; left:0%;">Cry</div>
+                    <div class="m-cell" style="top:25%; left:0%;">Finish</div>
+                </div>
+                <button class="btn-dadu" onclick="lemparDadu()">[ Kocok Dadu ] <span id="hasil-dadu"></span></button>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn secondary" onclick="goToPage(1)"><< Previous Page</button>
+                <button class="nav-btn" onclick="goToPage(3)">Next Page >></button>
+            </div>
+            <div class="footer-cr">Ini pengakuan cintanya fuaize untuk carleia</div>
+        </div>
+
+        <div id="page-3" class="page-content">
+            <div class="card-tabel">
+                <div class="section-title">✧ Kiss Me! (Tap to Catch Him)</div>
+                <div class="mole-board"></div>
+            </div>
+
+            <div class="card-tabel">
+                <div class="section-title">✧ Jars of Love</div>
+                <p style="text-align: center; font-size:0.8rem; margin-bottom: 10px;">Tap berkali-kali untuk isi penuh!</p>
+                <div class="jars-container"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn secondary" onclick="goToPage(2)"><< Kembali</button>
+                <button class="nav-btn secondary" onclick="goToPage(1)">[ Awal ]</button>
+                <button class="nav-btn" onclick="goToPage(4)">Lanjut >></button>
+            </div>
+            <div class="footer-cr">Ini pengakuan cintanya fuaize untuk carleia</div>
         </div>
 
         <div id="page-4" class="page-content">
-            <div class="card-tabel">
-                <div class="thankyou-text">Thank you and I love u,<br>Carl-mine</div>
+            
+            <div class="thankyou-text">Thank you and I love u,<br>Carl-mine</div>
+            
+            <div class="rating-box" id="rating-box">
+                <span class="star" onclick="rateHeart(1)">♡</span>
+                <span class="star" onclick="rateHeart(2)">♡</span>
+                <span class="star" onclick="rateHeart(3)">♡</span>
+                <span class="star" onclick="rateHeart(4)">♡</span>
+                <span class="star" onclick="rateHeart(5)">♡</span>
             </div>
-            <button class="nav-btn" onclick="kembaliKeLogin()">[ Halaman Utama ]</button>
-            <a href="https://wa.me/6281234567890" target="_blank" class="nav-btn wa-btn" style="text-decoration:none; display:block;">Chat via WhatsApp</a>
+
+            <div class="card-tabel">
+                <div class="section-title">✧ Our Memories</div>
+                <div class="scroll-foto-wrapper">
+                    <div class="foto-card"><img src="https://i.pinimg.com/736x/6e/ce/a8/6ecea8e5ce58dd7d28d37e55ed411b6d.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/736x/6e/ce/a8/6ecea8e5ce58dd7d28d37e55ed411b6d.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/736x/6e/ce/a8/6ecea8e5ce58dd7d28d37e55ed411b6d.jpg" alt="Momen"></div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn secondary" onclick="goToPage(3)"><< Kembali</button>
+                <button class="nav-btn" onclick="kembaliKeLogin()">[ Halaman Utama ]</button>
+            </div>
             <div class="footer-cr">Ini pengakuan cintanya fuaize untuk carleia</div>
         </div>
+
     </div>
 
     <script>
+        // --- 1. SYSTEM NAVIGATION & AUDIO ---
+        const bgMusic = document.getElementById('bg-music');
+        let isPlaying = false;
+        let isTransitioning = false; 
+
         function masukWeb() {
-            document.getElementById('login-section').style.display = 'none';
-            document.getElementById('page-1').style.display = 'block';
-            document.getElementById('bg-music').play();
+            if(isTransitioning) return;
+            isTransitioning = true;
+            
+            let loginSec = document.getElementById('login-section');
+            loginSec.style.animation = 'fadeOut 0.4s ease forwards';
+            
+            setTimeout(() => {
+                loginSec.style.display = 'none';
+                loginSec.style.animation = ''; 
+                
+                document.getElementById('status-bar').style.display = 'block';
+                let targetPage = document.getElementById('page-1');
+                targetPage.style.display = 'block';
+                targetPage.style.animation = 'fadeIn 0.5s ease forwards';
+                window.scrollTo(0, 0);
+                
+                isTransitioning = false;
+
+                if(!isPlaying) {
+                    bgMusic.play().then(() => {
+                        isPlaying = true;
+                        document.getElementById('play-icon').innerText = "[ || ]";
+                    }).catch(e => console.log("Autoplay dicegah browser"));
+                }
+            }, 380); 
         }
-        function goToPage(p) {
-            document.querySelectorAll('.page-content').forEach(el => el.style.display = 'none');
-            document.getElementById('page-'+p).style.display = 'block';
-        }
+
         function kembaliKeLogin() {
-            document.querySelectorAll('.page-content').forEach(el => el.style.display = 'none');
-            document.getElementById('login-section').style.display = 'flex';
+            if(isTransitioning) return;
+            isTransitioning = true;
+
+            let currentPage = document.querySelector('.page-content[style*="display: block"]');
+            if(currentPage) currentPage.style.animation = 'fadeOut 0.4s ease forwards';
+
+            setTimeout(() => {
+                document.querySelectorAll('.page-content').forEach(el => { el.style.display = 'none'; el.style.animation = ''; });
+                document.getElementById('status-bar').style.display = 'none';
+                let loginSec = document.getElementById('login-section');
+                loginSec.style.display = 'flex';
+                loginSec.style.animation = 'fadeIn 0.5s ease forwards';
+                window.scrollTo(0, 0);
+                isTransitioning = false;
+            }, 380);
+        }
+
+        function goToPage(pageNum) {
+            if(isTransitioning) return;
+            isTransitioning = true;
+
+            let currentPage = document.querySelector('.page-content[style*="display: block"]');
+            if(currentPage) {
+                currentPage.style.animation = 'fadeOut 0.4s ease forwards';
+                setTimeout(() => {
+                    currentPage.style.display = 'none';
+                    currentPage.style.animation = '';
+                    let targetPage = document.getElementById('page-' + pageNum);
+                    targetPage.style.display = 'block';
+                    targetPage.style.animation = 'fadeIn 0.5s ease forwards';
+                    window.scrollTo(0, 0);
+                    isTransitioning = false;
+                }, 380);
+            }
+        }
+
+        function toggleAudio() {
+            if (isPlaying) { bgMusic.pause(); document.getElementById('play-icon').innerText = "[ > ]"; } 
+            else { bgMusic.play(); document.getElementById('play-icon').innerText = "[ || ]"; }
+            isPlaying = !isPlaying;
+        }
+
+        // --- 2. EFEK GLITTER DI SETIAP KLIK ---
+        document.addEventListener('click', function(e) {
+            let glitter = document.createElement('div');
+            glitter.className = 'glitter-star';
+            glitter.style.left = (e.pageX - 10) + 'px';
+            glitter.style.top = (e.pageY - 10) + 'px';
+            glitter.innerHTML = `<svg viewBox="0 0 24 24" fill="#ff99c8"><path d="M12 0l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></svg>`;
+            document.body.appendChild(glitter);
+            setTimeout(() => glitter.remove(), 800);
+        });
+
+        // --- 3. GAME: TIC-TAC-TOE (AI OTOMATIS) ---
+        let tttBoard = ['', '', '', '', '', '', '', '', ''];
+        let tttGameOver = false;
+        
+        function initTicTacToe() {
+            tttBoard = ['', '', '', '', '', '', '', '', ''];
+            tttGameOver = false;
+            const board = document.getElementById('tictactoe-board');
+            board.innerHTML = '';
+            for(let i=0; i<9; i++) {
+                let cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.id = 'cell-' + i;
+                cell.onclick = () => tapCell(i);
+                board.appendChild(cell);
+            }
+        }
+
+        function tapCell(index) {
+            if(tttBoard[index] !== '' || tttGameOver) return;
+            tttBoard[index] = 'X';
+            document.getElementById('cell-' + index).innerHTML = 'X';
+            document.getElementById('cell-' + index).style.color = '#1e3a8a';
+            if(checkWinTTT()) return;
+
+            setTimeout(() => {
+                let emptySpaces = [];
+                tttBoard.forEach((val, idx) => { if(val === '') emptySpaces.push(idx); });
+                if(emptySpaces.length > 0 && !tttGameOver) {
+                    let botChoice = emptySpaces[Math.floor(Math.random() * emptySpaces.length)];
+                    tttBoard[botChoice] = '♡';
+                    document.getElementById('cell-' + botChoice).innerHTML = '♡';
+                    document.getElementById('cell-' + botChoice).style.color = '#d10056';
+                    checkWinTTT();
+                }
+            }, 500); 
+        }
+
+        function checkWinTTT() {
+            const winLines = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
+            for(let line of winLines) {
+                if(tttBoard[line[0]] && tttBoard[line[0]] === tttBoard[line[1]] && tttBoard[line[0]] === tttBoard[line[2]]) { tttGameOver = true; return true; }
+            }
+            if(!tttBoard.includes('')) tttGameOver = true; 
+            return tttGameOver;
+        }
+
+        initTicTacToe();
+        function resetTicTacToe() { initTicTacToe(); }
+
+        // --- 4. GAME: MONOPOLI (SQUARE LOOP) ---
+        const cellCoords = [
+            { top: 0, left: 0 }, { top: 0, left: 25 }, { top: 0, left: 50 }, { top: 0, left: 75 },
+            { top: 25, left: 75 }, { top: 50, left: 75 }, { top: 75, left: 75 }, { top: 75, left: 50 },
+            { top: 75, left: 25 }, { top: 75, left: 0 }, { top: 50, left: 0 }, { top: 25, left: 0 }
+        ];
+        
+        let posMonopoli = 0;
+        function lemparDadu() {
+            let dadu = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('hasil-dadu').innerText = `[ ${dadu} ]`;
+            posMonopoli = (posMonopoli + dadu) % cellCoords.length;
+            let token = document.getElementById('m-token');
+            token.style.top = cellCoords[posMonopoli].top + '%';
+            token.style.left = cellCoords[posMonopoli].left + '%';
+        }
+
+        // --- 5. GAME: KISS ME (WHACK-A-MOLE GIF) ---
+        const moleBoard = document.querySelector('.mole-board');
+        // Ganti URL ini dengan URL foto pacarmu
+        const fotoMole = 'https://i.pinimg.com/736x/6e/ce/a8/6ecea8e5ce58dd7d28d37e55ed411b6d.jpg';
+        
+        for(let i=0; i<6; i++) {
+            let hole = document.createElement('div');
+            hole.className = 'mole-hole';
+            let head = document.createElement('div');
+            head.className = 'mole-head';
+            head.onclick = function() {
+                this.innerHTML = `<span style="position:absolute; top:30%; left:25%; font-size:2rem;">♥</span>`;
+                setTimeout(() => { this.innerHTML = ''; }, 1000);
+            };
+            hole.appendChild(head);
+            moleBoard.appendChild(hole);
+        }
+
+        // --- 6. GAME: JARS OF LOVE ---
+        const jarsContainer = document.querySelector('.jars-container');
+        const labels = ['Ganteng', 'Galak', 'Gemas', 'Baik', 'Jamet', 'Keren'];
+        
+        labels.forEach(label => {
+            let wrapper = document.createElement('div');
+            wrapper.className = 'jar-wrapper';
+            wrapper.innerHTML = `<div class="jar" onclick="isiJar(this)"><div class="jar-fill" data-height="0"></div></div><div class="jar-label">${label}</div>`;
+            jarsContainer.appendChild(wrapper);
+        });
+
+        function isiJar(jarElement) {
+            let fill = jarElement.querySelector('.jar-fill');
+            let currentHeight = parseInt(fill.getAttribute('data-height'));
+            if(currentHeight >= 100) {
+                jarElement.classList.add('spilling');
+                fill.style.background = '#e2e8f0'; 
+                setTimeout(() => { 
+                    jarElement.classList.remove('spilling');
+                    fill.style.height = '0%';
+                    fill.setAttribute('data-height', '0');
+                    fill.style.background = '#ff99c8';
+                }, 500);
+            } else {
+                currentHeight += 20; 
+                fill.setAttribute('data-height', currentHeight);
+                fill.style.height = currentHeight + '%';
+            }
+        }
+
+        // --- 7. RATING LOVE ---
+        function rateHeart(rating) {
+            let stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if(index < rating) { star.innerText = '♥'; star.classList.add('active'); } 
+                else { star.innerText = '♡'; star.classList.remove('active'); }
+            });
         }
     </script>
 </body>
