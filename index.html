@@ -71,29 +71,34 @@
         .blue-player { display: flex; align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; }
         .player-btn { width: 40px; height: 40px; background-color: #3b82f6; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; margin-right: 15px; font-weight: bold;}
 
-/* --- GALERI FOTO SCROLL --- */
-.scroll-foto-wrapper { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
-.scroll-foto-wrapper::-webkit-scrollbar { height: 5px; }
-.scroll-foto-wrapper::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 10px; }
+/* --- GALERI FOTO SCROLL YANG DISESUAIKAN --- */
+.scroll-foto-wrapper { 
+    display: flex; 
+    flex-direction: row; /* Berjajar ke samping */
+    align-items: flex-start; /* Foto akan menyesuaikan tinggi aslinya */
+    overflow-x: auto; 
+    gap: 15px; 
+    padding-bottom: 10px; 
+    scroll-snap-type: x mandatory; 
+}
 
 .foto-card { 
-    flex: 0 0 160px; 
+    flex: 0 0 auto; /* Ukuran mengikuti konten */
     scroll-snap-align: start; 
     background: #fff; 
-    padding: 8px; 
-    border-radius: 12px; 
+    padding: 6px; /* Padding tipis sebagai bingkai */
+    border-radius: 16px; /* Radius luar */
     border: 2px solid #dbeafe; 
-    height: 200px; /* Menentukan tinggi kontainer agar seragam */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .foto-card img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain; /* FOTO TIDAK AKAN DICROP/DIRENGGANGKAN */
-    border-radius: 8px; 
+    display: block;
+    max-width: 250px; /* Lebar maksimal agar tidak terlalu besar di HP */
+    height: auto; /* Tinggi otomatis agar tidak gepeng */
+    border-radius: 10px; /* Radius dalam mengikuti radius border tabel */
 }
 
 
@@ -283,9 +288,9 @@
             </div>
 
             <div class="nav-buttons">
-                <button class="nav-btn secondary" onclick="goToPage(2)"><< Kembali</button>
-                <button class="nav-btn secondary" onclick="goToPage(1)">[ Awal ]</button>
-                <button class="nav-btn" onclick="goToPage(4)">Lanjut >></button>
+                <button class="nav-btn secondary" onclick="goToPage(2)"><< Previous Page</button>
+                <button class="nav-btn secondary" onclick="goToPage(1)">[ Home Page ]</button>
+                <button class="nav-btn" onclick="goToPage(4)">Next Page >></button>
             </div>
             <div class="footer-cr">Ini pengakuan cintanya fuaize untuk carleia</div>
         </div>
@@ -305,19 +310,19 @@
             <div class="card-tabel">
                 <div class="section-title">✧ Jenlei Lovememories</div>
                 <div class="scroll-foto-wrapper">
-                    <div class="foto-card"><img src="https://pin.it/gqDveKGVj.jpg" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://pin.it/4LZre4K7w.jpg" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://pin.it/2ZI0Hw9JQ.jpg" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://pin.it/2D4TmmWf7.jpg" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://pin.it/6lgJ579OI.jpg" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://pin.it/2S910BKN6.jpg" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://pin.it/5MkKXUoPc.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/1200x/0d/b2/2c/0db22cd9a4c79774d60d75c89ac15fc2.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/1200x/f8/08/72/f80872cd6fad765c804ff4bb3784b819.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/736x/cd/98/fa/cd98fa2033c77777ba852d9ae23ed728.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/1200x/f0/81/22/f08122412d03c169706128ceb57da4a6.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/1200x/8f/6a/9f/8f6a9f8346b4dda94c8bdb62252f73f2.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/1200x/b0/ba/96/b0ba9676174247c82409667238a0303a.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/1200x/cb/7f/92/cb7f92225d9e264a5ae81ac507b6c1a4.jpg" alt="Momen"></div>
                 </div>
             </div>
 
             <div class="nav-buttons">
-                <button class="nav-btn secondary" onclick="goToPage(3)"><< Kembali</button>
-                <button class="nav-btn" onclick="kembaliKeLogin()">[ Halaman Utama ]</button>
+                <button class="nav-btn secondary" onclick="goToPage(3)"><< Previous Page</button>
+                <button class="nav-btn" onclick="kembaliKeLogin()">[ Home Page ]</button>
             </div>
             <div class="footer-cr">Ini pengakuan cintanya fuaize untuk carleia</div>
         </div>
