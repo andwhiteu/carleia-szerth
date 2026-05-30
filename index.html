@@ -71,29 +71,34 @@
         .blue-player { display: flex; align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; }
         .player-btn { width: 40px; height: 40px; background-color: #3b82f6; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; margin-right: 15px; font-weight: bold;}
 
-        /* --- GALERI FOTO SCROLL --- */
-.scroll-foto-wrapper { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
-.scroll-foto-wrapper::-webkit-scrollbar { height: 5px; }
-.scroll-foto-wrapper::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 10px; }
+/* --- GALERI FOTO SCROLL YANG DISESUAIKAN --- */
+.scroll-foto-wrapper { 
+    display: flex; 
+    flex-direction: row; /* Berjajar ke samping */
+    align-items: flex-start; /* Foto akan menyesuaikan tinggi aslinya */
+    overflow-x: auto; 
+    gap: 15px; 
+    padding-bottom: 10px; 
+    scroll-snap-type: x mandatory; 
+}
 
 .foto-card { 
-    flex: 0 0 160px; 
+    flex: 0 0 auto; /* Ukuran mengikuti konten */
     scroll-snap-align: start; 
     background: #fff; 
-    padding: 8px; 
-    border-radius: 12px; 
+    padding: 6px; /* Padding tipis sebagai bingkai */
+    border-radius: 16px; /* Radius luar */
     border: 2px solid #dbeafe; 
-    height: 200px; /* Menentukan tinggi kontainer agar seragam */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .foto-card img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain; /* FOTO TIDAK AKAN DICROP/DIRENGGANGKAN */
-    border-radius: 8px; 
+    display: block;
+    max-width: 250px; /* Lebar maksimal agar tidak terlalu besar di HP */
+    height: auto; /* Tinggi otomatis agar tidak gepeng */
+    border-radius: 10px; /* Radius dalam mengikuti radius border tabel */
 }
 
         /* --- GAME: TICTACTOE --- */
