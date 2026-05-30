@@ -31,6 +31,7 @@
 
         /* --- LOGIN & HALAMAN DENGAN BACKGROUND KUSTOM --- */
         #login-section, .page-content {
+            /* URL Background Utama */
             background-image: url('https://i.pinimg.com/736x/18/1a/35/181a35013258b058115aa064111eb3f7.jpg');
             background-size: cover;
             background-position: center;
@@ -51,19 +52,13 @@
         .login-box input { width: 100%; padding: 14px; margin-bottom: 12px; border: 2px solid #e2e8f0; border-radius: 10px; }
         .login-box button { width: 100%; padding: 14px; background-color: #3b82f6; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
 
+        .warning-text { font-size: 0.75rem; color: #d10056; margin-top: 15px; font-weight: 800; }
+
         /* --- ANIMASI TRANSISI HALAMAN --- */
-        .page-content {
-            display: none; padding: 20px; flex: 1;
-        }
+        .page-content { display: none; padding: 20px; flex: 1; }
         
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        @keyframes fadeOut { 
-            from { opacity: 1; transform: translateY(0); } 
-            to { opacity: 0; transform: translateY(-20px); } 
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-20px); } }
 
         .card-tabel { background: rgba(255, 255, 255, 0.95); border: 2px solid #bfdbfe; border-radius: 16px; padding: 20px; margin-bottom: 20px; }
         .judul-utama { text-align: center; color: #1e3a8a; font-size: 1.6rem; font-weight: 800; }
@@ -88,35 +83,22 @@
         .cell { aspect-ratio: 1; background: #e2e8f0; border-radius: 8px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 3rem; font-weight: 800; border: 2px solid #bfdbfe; color: #1e3a8a;}
         
         /* --- GAME: MONOPOLI --- */
-        .monopoly-board { 
-            width: 100%; padding-bottom: 100%; position: relative; margin-bottom: 15px; 
-            background: #f1f5f9; border: 2px solid #bfdbfe; border-radius: 8px;
-        }
-        .m-center-text {
-            position: absolute; top: 25%; left: 25%; width: 50%; height: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Caveat', cursive; font-size: 1.8rem; color: #cbdbe5;
-            text-align: center; font-weight: bold;
-        }
-        .m-cell { 
-            position: absolute; width: 25%; height: 25%; background: #fff; 
-            border: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: center; 
-            font-size: 0.6rem; text-align: center; font-weight: bold; color: #1e3a8a;
-        }
-        .m-token { 
-            position: absolute; width: 16%; height: 16%; border-radius: 50%; 
-            border: 2px solid #3b82f6; background-color: white; 
-            background-image: url('2b392091a7f3ba612e49828371d02d68.jpg'); 
-            background-size: cover; background-position: center; 
-            z-index: 10; transition: all 0.5s ease;
-            margin-left: 4.5%; margin-top: 4.5%;
+        .monopoly-board { width: 100%; padding-bottom: 100%; position: relative; margin-bottom: 15px; background: #f1f5f9; border: 2px solid #bfdbfe; border-radius: 8px; }
+        .m-center-text { position: absolute; top: 25%; left: 25%; width: 50%; height: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Caveat', cursive; font-size: 1.8rem; color: #cbdbe5; text-align: center; font-weight: bold; }
+        .m-cell { position: absolute; width: 25%; height: 25%; background: #fff; border: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; text-align: center; font-weight: bold; color: #1e3a8a; }
+        .m-token { position: absolute; width: 16%; height: 16%; border-radius: 50%; border: 2px solid #3b82f6; background-color: white; background-size: cover; background-position: center; z-index: 10; transition: all 0.5s ease; margin-left: 4.5%; margin-top: 4.5%; 
+            /* URL FOTO BIDAK MONOPOLI */
+            background-image: url('https://i.pinimg.com/736x/8b/7a/9f/8b7a9f4d1e3e41b49ba8a6be50f05b84.jpg');
         }
         .btn-dadu { width: 100%; padding: 10px; background: #1e3a8a; color: white; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 10px;}
 
         /* --- GAME: WHACK A MOLE (KISS ME) --- */
         .mole-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
         .mole-hole { background: #dbeafe; border-radius: 50%; aspect-ratio: 1; position: relative; overflow: hidden; border: 3px solid #bfdbfe; display: flex; justify-content: center; align-items: center;}
-        .mole-head { width: 80%; height: 80%; border-radius: 50%; background-size: cover; background-position: center; cursor: pointer; transition: transform 0.1s; background-image: url('2b392091a7f3ba612e49828371d02d68.jpg'); }
+        .mole-head { width: 80%; height: 80%; border-radius: 50%; background-size: cover; background-position: center; cursor: pointer; transition: transform 0.1s; 
+            /* URL FOTO TIKUS TANAH (KISS ME) */
+            background-image: url('https://i.pinimg.com/736x/8b/7a/9f/8b7a9f4d1e3e41b49ba8a6be50f05b84.jpg'); 
+        }
         .mole-head:active { transform: scale(0.9); }
 
         /* --- GAME: JARS OF LOVE --- */
@@ -130,7 +112,6 @@
         .spilling { animation: spill 0.4s ease-in-out; }
 
         /* --- HALAMAN AKHIR & RATING --- */
-        .fireworks { width: 100%; height: 120px; background: url('https://i.pinimg.com/originals/11/49/a8/1149a88cd577a33ffb5f08832a8846bb.gif') center/cover; margin-bottom: 10px; border-radius: 12px; }
         .thankyou-text { text-align: center; font-size: 1.8rem; font-family: 'Caveat', cursive; color: #d10056; font-weight: bold; margin: 20px 0; background: rgba(255,255,255,0.7); padding: 10px; border-radius: 10px;}
         .rating-box { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;}
         .star { font-size: 2rem; color: #cbdbe5; cursor: pointer; transition: color 0.3s; }
@@ -143,11 +124,7 @@
 
         /* --- GLITTER ANIMATION --- */
         .glitter-star { position: absolute; width: 20px; height: 20px; pointer-events: none; z-index: 9999; animation: sparkle 0.8s linear forwards; }
-        @keyframes sparkle {
-            0% { transform: scale(0) rotate(0deg); opacity: 1; }
-            50% { transform: scale(1.2) rotate(90deg); opacity: 0.8; }
-            100% { transform: scale(0) rotate(180deg); opacity: 0; }
-        }
+        @keyframes sparkle { 0% { transform: scale(0) rotate(0deg); opacity: 1; } 50% { transform: scale(1.2) rotate(90deg); opacity: 0.8; } 100% { transform: scale(0) rotate(180deg); opacity: 0; } }
     </style>
 </head>
 <body>
@@ -169,6 +146,7 @@
                 <input type="text" placeholder="Username">
                 <input type="password" placeholder="Password (Bebas)">
                 <button onclick="masukWeb()">Log In</button>
+                <div class="warning-text">[ Peringatan: Tolong kecilkan volume HP kamu ]</div>
             </div>
         </div>
 
@@ -268,8 +246,9 @@
         </div>
 
         <div id="page-4" class="page-content">
-            <div class="fireworks"></div>
+            
             <div class="thankyou-text">Thank you and I love u,<br>Carl-mine</div>
+            
             <div class="rating-box" id="rating-box">
                 <span class="star" onclick="rateHeart(1)">♡</span>
                 <span class="star" onclick="rateHeart(2)">♡</span>
@@ -281,13 +260,11 @@
             <div class="card-tabel">
                 <div class="section-title">✧ Our Memories</div>
                 <div class="scroll-foto-wrapper">
-                    <div class="foto-card"><img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=300" alt="Momen"></div>
-                    <div class="foto-card"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=300" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/736x/11/22/33/112233445566.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/736x/22/33/44/223344556677.jpg" alt="Momen"></div>
+                    <div class="foto-card"><img src="https://i.pinimg.com/736x/33/44/55/334455667788.jpg" alt="Momen"></div>
                 </div>
             </div>
-
-            <div class="fireworks"></div>
 
             <div class="nav-buttons">
                 <button class="nav-btn secondary" onclick="goToPage(3)"><< Kembali</button>
@@ -302,7 +279,7 @@
         // --- 1. SYSTEM NAVIGATION & AUDIO ---
         const bgMusic = document.getElementById('bg-music');
         let isPlaying = false;
-        let isTransitioning = false; // Mencegah spam klik tombol
+        let isTransitioning = false; 
 
         function masukWeb() {
             if(isTransitioning) return;
@@ -313,7 +290,7 @@
             
             setTimeout(() => {
                 loginSec.style.display = 'none';
-                loginSec.style.animation = ''; // Reset animasi
+                loginSec.style.animation = ''; 
                 
                 document.getElementById('status-bar').style.display = 'block';
                 let targetPage = document.getElementById('page-1');
@@ -323,14 +300,13 @@
                 
                 isTransitioning = false;
 
-                // Auto play music
                 if(!isPlaying) {
                     bgMusic.play().then(() => {
                         isPlaying = true;
                         document.getElementById('play-icon').innerText = "[ || ]";
                     }).catch(e => console.log("Autoplay dicegah browser"));
                 }
-            }, 380); // Tunggu animasi selesai
+            }, 380); 
         }
 
         function kembaliKeLogin() {
@@ -341,17 +317,12 @@
             if(currentPage) currentPage.style.animation = 'fadeOut 0.4s ease forwards';
 
             setTimeout(() => {
-                document.querySelectorAll('.page-content').forEach(el => {
-                    el.style.display = 'none';
-                    el.style.animation = '';
-                });
-                
+                document.querySelectorAll('.page-content').forEach(el => { el.style.display = 'none'; el.style.animation = ''; });
                 document.getElementById('status-bar').style.display = 'none';
                 let loginSec = document.getElementById('login-section');
                 loginSec.style.display = 'flex';
                 loginSec.style.animation = 'fadeIn 0.5s ease forwards';
                 window.scrollTo(0, 0);
-                
                 isTransitioning = false;
             }, 380);
         }
@@ -361,22 +332,15 @@
             isTransitioning = true;
 
             let currentPage = document.querySelector('.page-content[style*="display: block"]');
-            
             if(currentPage) {
-                // Terapkan animasi keluar
                 currentPage.style.animation = 'fadeOut 0.4s ease forwards';
-                
                 setTimeout(() => {
-                    // Sembunyikan halaman lama
                     currentPage.style.display = 'none';
                     currentPage.style.animation = '';
-                    
-                    // Munculkan halaman baru
                     let targetPage = document.getElementById('page-' + pageNum);
                     targetPage.style.display = 'block';
                     targetPage.style.animation = 'fadeIn 0.5s ease forwards';
                     window.scrollTo(0, 0);
-                    
                     isTransitioning = false;
                 }, 380);
             }
@@ -419,17 +383,14 @@
 
         function tapCell(index) {
             if(tttBoard[index] !== '' || tttGameOver) return;
-            
             tttBoard[index] = 'X';
             document.getElementById('cell-' + index).innerHTML = 'X';
             document.getElementById('cell-' + index).style.color = '#1e3a8a';
-            
             if(checkWinTTT()) return;
 
             setTimeout(() => {
                 let emptySpaces = [];
                 tttBoard.forEach((val, idx) => { if(val === '') emptySpaces.push(idx); });
-                
                 if(emptySpaces.length > 0 && !tttGameOver) {
                     let botChoice = emptySpaces[Math.floor(Math.random() * emptySpaces.length)];
                     tttBoard[botChoice] = '♡';
@@ -441,14 +402,9 @@
         }
 
         function checkWinTTT() {
-            const winLines = [
-                [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]
-            ];
+            const winLines = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
             for(let line of winLines) {
-                if(tttBoard[line[0]] && tttBoard[line[0]] === tttBoard[line[1]] && tttBoard[line[0]] === tttBoard[line[2]]) {
-                    tttGameOver = true;
-                    return true;
-                }
+                if(tttBoard[line[0]] && tttBoard[line[0]] === tttBoard[line[1]] && tttBoard[line[0]] === tttBoard[line[2]]) { tttGameOver = true; return true; }
             }
             if(!tttBoard.includes('')) tttGameOver = true; 
             return tttGameOver;
@@ -468,9 +424,7 @@
         function lemparDadu() {
             let dadu = Math.floor(Math.random() * 6) + 1;
             document.getElementById('hasil-dadu').innerText = `[ ${dadu} ]`;
-            
             posMonopoli = (posMonopoli + dadu) % cellCoords.length;
-            
             let token = document.getElementById('m-token');
             token.style.top = cellCoords[posMonopoli].top + '%';
             token.style.left = cellCoords[posMonopoli].left + '%';
@@ -478,8 +432,8 @@
 
         // --- 5. GAME: KISS ME (WHACK-A-MOLE GIF) ---
         const moleBoard = document.querySelector('.mole-board');
-        const gifReaction = 'https://i.gifer.com/1Dbd.gif'; 
-        const fotoMole = '2b392091a7f3ba612e49828371d02d68.jpg';
+        // Ganti URL ini dengan URL foto pacarmu
+        const fotoMole = 'https://i.pinimg.com/736x/8b/7a/9f/8b7a9f4d1e3e41b49ba8a6be50f05b84.jpg';
         
         for(let i=0; i<6; i++) {
             let hole = document.createElement('div');
@@ -487,8 +441,8 @@
             let head = document.createElement('div');
             head.className = 'mole-head';
             head.onclick = function() {
-                this.style.backgroundImage = `url('${gifReaction}')`;
-                setTimeout(() => { this.style.backgroundImage = `url('${fotoMole}')`; }, 1000);
+                this.innerHTML = `<span style="position:absolute; top:30%; left:25%; font-size:2rem;">♥</span>`;
+                setTimeout(() => { this.innerHTML = ''; }, 1000);
             };
             hole.appendChild(head);
             moleBoard.appendChild(hole);
@@ -501,19 +455,13 @@
         labels.forEach(label => {
             let wrapper = document.createElement('div');
             wrapper.className = 'jar-wrapper';
-            wrapper.innerHTML = `
-                <div class="jar" onclick="isiJar(this)">
-                    <div class="jar-fill" data-height="0"></div>
-                </div>
-                <div class="jar-label">${label}</div>
-            `;
+            wrapper.innerHTML = `<div class="jar" onclick="isiJar(this)"><div class="jar-fill" data-height="0"></div></div><div class="jar-label">${label}</div>`;
             jarsContainer.appendChild(wrapper);
         });
 
         function isiJar(jarElement) {
             let fill = jarElement.querySelector('.jar-fill');
             let currentHeight = parseInt(fill.getAttribute('data-height'));
-            
             if(currentHeight >= 100) {
                 jarElement.classList.add('spilling');
                 fill.style.background = '#e2e8f0'; 
@@ -530,17 +478,12 @@
             }
         }
 
-        // --- 7. RATING LOVE (BINTANG -> HATI) ---
+        // --- 7. RATING LOVE ---
         function rateHeart(rating) {
             let stars = document.querySelectorAll('.star');
             stars.forEach((star, index) => {
-                if(index < rating) {
-                    star.innerText = '♥'; 
-                    star.classList.add('active');
-                } else {
-                    star.innerText = '♡'; 
-                    star.classList.remove('active');
-                }
+                if(index < rating) { star.innerText = '♥'; star.classList.add('active'); } 
+                else { star.innerText = '♡'; star.classList.remove('active'); }
             });
         }
     </script>
